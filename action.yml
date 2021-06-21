@@ -1,20 +1,16 @@
 name: 'Install Octopus CLI'
-description: 'Installation of the Octopus CLI'
+description: 'GitHub Action to install the Octopus CLI'
+author: 'Octopus Deploy'
+branding: 
+  color: 'blue'
+  icon: 'download'
 
 inputs:
   version:
-    description: Version to install
-    required: true
-  api_key:
-    description: API key for the Octopus Deploy server
-    required: false
-  server_url:
-    description: Octopus Deploy server URL
+    default: 'latest'
+    description: 'Octopus CLI version'
     required: false
 
 runs:
-  using: composite
-  steps:
-  - run: |
-      dotnet tool install --global Octopus.DotNet.Cli --version ${{ inputs.version }}
-    shell: bash
+  using: 'node12'
+  main: 'dist/index.js'
